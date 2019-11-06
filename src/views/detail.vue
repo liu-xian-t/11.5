@@ -2,19 +2,22 @@
     <div class="detail">
         <h1>{{item.title}}</h1>
         <p>{{item.content}}</p>
-        <div class="xin">
+        <!-- <div class="xin">
            <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-xiangqu"></use>
           </svg>
-        </div>
+        </div> -->
+        <button class="collect" @click="collect(item)">收藏</button>
+        <button class="collect" @click="uncollect(item.id)">取消收藏</button>
+        <button class="collect" @click="date(item)">我的收藏</button>
     </div>
 </template>
 <script>
-import {mapMutations} from "vuex"
+import {mapMutations,mapState} from "vuex"
 export default {
     name:"detail",
     props:{
-
+        
     },
     components:{
 
@@ -26,13 +29,13 @@ export default {
         }
     },
     computed:{
-
+       ...mapState(["list"])
     },
     methods:{
-      ...mapMutations(["collect"]),
-      change(index){
-            this.changeRed = index;
-        }
+      ...mapMutations(["collect","uncollect"]),
+      date(item){
+          this.$router.push({path:"/collect",query:item})
+      }
 
     },
     created(){
@@ -63,5 +66,12 @@ export default {
         fill: currentColor;
         overflow: hidden;
         margin-left:20px;
+    }
+    .collect{
+        width: 100%;
+        height: 50px;
+        border: none;
+        margin-top:30px;
+        background: salmon;
     }
 </style>  

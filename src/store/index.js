@@ -11,7 +11,17 @@ export default new Vuex.Store({
   mutations: {
       collect(state,item){
         state.list.push(item)
+        window.console.log(state.list)
+      },
+      uncollect(state,id){
+        var findI=state.list.findIndex((item)=>{
+          return item.id==id
+        })
+        if(findI!=-1){
+          state.list.splice(findI,1)
+        }
       }
+    
   },
   actions: {
   },

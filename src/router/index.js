@@ -63,6 +63,11 @@ const routes = [
      component:()=>import("../views/detail")
    },
    {
+     path:"/collect",
+     name:"collect",
+     component:()=>import("../views/collect.vue")
+   },
+   {
      path:"*",
      redirect:"/home/onepage/zhu"
    }
